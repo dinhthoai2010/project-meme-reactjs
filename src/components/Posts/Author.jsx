@@ -1,12 +1,15 @@
 import React from 'react';
+import { formatRelativeDate } from '../../helpers/day';
 
-const Author = () => {
+const Author = ({ author, time }) => {
+    if (author.id === undefined) return '';
+    const {dateRelative} = formatRelativeDate(time, false)
     return (
         <div className="ass1-section__head">
-            <a href="bai-viet-chi-tiet.html" className="ass1-section__avatar ass1-avatar"><img src="assets/images/avatar-02.png" alt="" /></a>
+            <a href="bai-viet-chi-tiet.html" className="ass1-section__avatar ass1-avatar"><img src={author.avatar} alt="" /></a>
             <div>
-                <a href="bai-viet-chi-tiet.html" className="ass1-section__name">Thanos</a>
-                <span className="ass1-section__passed">2 giờ trước</span>
+                <a href="bai-viet-chi-tiet.html" className="ass1-section__name">{author.name}</a>
+                <span className="ass1-section__passed">{dateRelative}</span>
             </div>
         </div>
     );

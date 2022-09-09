@@ -2,9 +2,13 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            Footer
-        </div>
+        <footer>
+            <div className="ass1-footer">
+                <div className="container">
+                    <p className="text-center">Cộng đồng chế ảnh VietNam</p>
+                </div>
+            </div>
+        </footer>
     );
 };
 

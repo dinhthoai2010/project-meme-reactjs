@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
     return (
@@ -8,7 +9,7 @@ const SideBar = () => {
                     <div>Bài viết gần đây của bạn.</div>
                 </div>
                 <div>Vui lòng đăng nhập để xem nội dung này
-                    <a href="#">Đăng nhập</a>
+                    <Link to="login">Đăng nhập</Link>
                 </div>
             </aside>
         </div>

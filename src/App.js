@@ -5,31 +5,51 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./layout/Author/Footer";
 import HomePage from "./page/HomePage";
+import Login from "./page/author/Login";
+import Register from "./page/author/Register";
+import Profile from "./page/author/Profile";
+import ChangePass from "./page/author/ChangePass";
+import UploadImg from "./page/post/UploadImg";
+import PostDes from "./page/post/PostDes";
+import PostHistory from "./page/author/PostHistory";
+import ListPost from "./page/post/ListPost";
 
 function App() {
+
   return (
     <BrowserRouter>
-      <Header />
       <Switch>
-        <Route path="/post/slug">
-          <HomePage />
-        </Route>
         <Route path="/post/add">
           <HomePage />
         </Route>
+        <Route path="/post/:slug">
+          <PostDes />
+        </Route>
+        <Route path="/upload">
+          <UploadImg />
+        </Route>
         <Route path="/login">
-          <HomePage />
+          <Login />
         </Route>
         <Route path="/register">
-          <HomePage />
+          <Register />
+        </Route>
+        <Route path="/profile/post-list">
+          <PostHistory />
+        </Route>
+        <Route path="/category/:id">
+          <ListPost />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/change-password">
+          <ChangePass />
         </Route>
         <Route path="/">
           <HomePage />
         </Route>
-        <Footer />
       </Switch>
     </BrowserRouter>
   );
