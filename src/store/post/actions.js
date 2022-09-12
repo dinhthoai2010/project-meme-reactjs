@@ -1,6 +1,6 @@
-import { configure } from "@testing-library/react"
 import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_POST_DES } from "../../constants"
-import { hasListPost, mappingComment } from "../../helpers"
+import { hasListPost, mappingCategory, mappingComment, mappingPostDes, mappingUser } from "../../helpers"
+import { authorService } from "../../services/author"
 import { commentServices } from "../../services/comment"
 import { postService } from "../../services/post"
 import { reducerGetComment } from "../comment/action"
@@ -70,7 +70,6 @@ export const handleUploadImage = (dataForm) => {
 }
 
 export const asySearchPost = (key, auto = false) => {
-    console.log(key, auto)
     return async dispatch => {
         try {
             const listPost = await postService.getPostByKey(key);
@@ -97,21 +96,40 @@ function reducerGetListPostSearch(posts) {
 
 export const aysGetPost = (id) => {
     return async dispatch => {
-        const resPost = await postService.getPost(id);
-        const resComment = await commentServices.getComment(28);
-        const post = resPost.data.data;
-        const comment = mappingComment(resComment.data.comments)
-        dispatch(reducerGetPost(post))
-        dispatch(reducerGetComment(comment))
+        try {
+            const resPost = await postService.getPost(id);
+            const resComment = await commentServices.getComment(id);
+            let post = resPost.data.data;
+            const comment = mappingComment(resComment.data.comments)
+
+            if (post.post !== undefined) {
+                const user = await authorService.getUser(post.post.USERID);
+                // post.user = mappingUser(user.data.user)
+                // post.post = mappingPostDes(post.post)
+                // post.categories = mappingCategory(post.categories)
+
+                post = {
+                    user: mappingUser(user.data.user),
+                    post :{...mappingPostDes(post.post), count:comment.length},
+                    categories:mappingCategory(post.categories)
+                }
+                dispatch(reducerGetPost(post, user))
+                dispatch(reducerGetComment(comment))
+
+            }
+
+
+        } catch (error) {
+            return error
+        }
     }
 }
 
 function reducerGetPost(post) {
-    console.log(post)
     return {
         type: GET_POST_DES,
         payload: {
-            post
+            post: post
         }
     }
 }

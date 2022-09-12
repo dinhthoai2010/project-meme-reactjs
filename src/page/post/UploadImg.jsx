@@ -8,7 +8,7 @@ const UploadImg = () => {
     const dispatch = useDispatch()
     const [dataUpload, setDataUpload] = useState(
         {
-            url_image: 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg',
+            url_image: '',
             post_content: "",
             category: [],
             obj_image: null
@@ -30,7 +30,7 @@ const UploadImg = () => {
                 alert("Thanh cong");
                 
                 setDataUpload({
-                    url_image: 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg',
+                    url_image: '',
                     post_content: "",
                     category: [],
                     obj_image: null
@@ -168,7 +168,7 @@ const FormUploadImage = ({ formData }) => {
             </form>
             <div className="ass1-section__image">
                 <a href="/">
-                    <img src={dataUpload.url_image} alt="default" />
+                    <img src={dataUpload.url_image?dataUpload.url_image:"https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg"}  alt="default" />
                 </a>
             </div>
             <a href="https://memeful.com/" target="_blank" className="ass1-btn ass1-btn-meme" rel="noreferrer">Chế ảnh từ

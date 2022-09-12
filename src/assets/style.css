@@ -2596,3 +2596,12 @@ select.form-control:focus {
 .list-search ul li {
   margin-bottom: 10px;
 }
+
+
+.category-des {
+  gap: 10px;
+  margin-bottom: 2em;
+  padding: 2em 0;
+  flex-wrap: wrap;
+  align-items: center;
+}

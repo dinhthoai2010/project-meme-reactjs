@@ -26,7 +26,7 @@ function reducer(postState = intState, action) {
                 ...postState,
                 postSearch: action.payload.posts
             }
-        case GET_POST_DES : 
+        case GET_POST_DES: 
             return {
                 ...postState,
                 PostDes: action.payload.post

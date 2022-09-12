@@ -31,9 +31,6 @@ const Header = () => {
                                 <button onClick={handleTogge} className='btn'>Danh mục</button>
                                 <Category show={show} />
                             </li>
-                            <Link to="/" className="ass1-logo">
-                                Hot
-                            </Link>
                         </ul>
                     </nav>
                     <SearchForm />

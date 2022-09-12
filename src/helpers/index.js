@@ -19,6 +19,28 @@ export function hasListPost(posts) {
     return listPost;
 }
 
+export const mappingPostDes = (post) => {
+    return {
+        id: post.PID,
+        content: post.post_content,
+        date: post.time_added,
+        image: post.url_image
+    }
+}
+
+export const mappingCategory = (categories) => {
+    if (categories.length === 0) return []
+    const category = [];
+    categories.forEach(item => {
+        category.push({
+            id: item.PID,
+            tagId: item.TAG_ID,
+            content: item.tag_value
+        })
+    })
+    return category
+}
+
 export function mappingUser(user) {
     return {
         id: user.USERID,
@@ -56,4 +78,13 @@ export const mappingComment = comments => {
         })
     })
     return cm;
+}
+
+export const getUserId= () =>{
+    return 10;
+}
+
+
+export const getPostId= () =>{
+    return 10;
 }
