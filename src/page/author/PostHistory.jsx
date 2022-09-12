@@ -1,34 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Profile from '../../components/author/Profile';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import Posts from '../../components/Posts';
 
 const PostHistory = () => {
+    const posts = useSelector(state => state.Post.listPost)
     return (
-        <div>
-            <Header />
-            <main>
-                <div className="container">
-                    <Profile/>
-                    <div className="ass1-section__wrap row ass1-section__isotope-init">
-                        <div className="ass1-section__item col-lg-6">
-                            <Posts />
-                        </div>
-                        <div className="ass1-section__item col-lg-6">
-                            <Posts />
-                        </div>
-                        <div className="ass1-section__item col-lg-6">
-                            <Posts />
-                        </div>
-                        <div className="ass1-section__item col-lg-6">
-                            <Posts />
-                        </div>
+        <main>
+            <div className="container">
+                <Profile />
+                <div className="ass1-section__wrap row ass1-section__isotope-init">
+                    <div className="ass1-section__item col-lg-6">
                     </div>
+qqqq
                 </div>
-            </main>
-            <Footer />
-        </div>
+            </div>
+        </main>
     );
 };
 

@@ -1,4 +1,5 @@
 import { ACCESS_TOKEN, ACT_LOGIN_SUCCESS } from "../../constants";
+import { mappingUser } from "../../helpers";
 import { authorService } from "../../services/author"
 
 export function asyLogin(params) {
@@ -23,29 +24,19 @@ export function asyLogin(params) {
 
 export function asyFetchMe() {
     return async dispatch => {
+
         const token = localStorage.getItem(ACCESS_TOKEN);
+        if (token === '') return null;
         try {
             const res = await authorService.fetchMe(token)
-            const user = res.data.user;
-
-            if(user.id!==undefined){
-                getUserById(user.id)
+            let user = res.data.user;
+            if (user.id) {
+                user = await authorService.getUser(user.id);
+                user = mappingUser(user.data.user) 
             }
             dispatch(reducerLogin(user, token))
-            console.log(res.data)
         } catch (error) {
             console.log(error)
-        }
-    }
-}
-
-function getUserById(id) {
-    return async dispatch  => {
-        try {
-            const user = authorService.getUser(id);
-            return user.data.user
-        } catch (error) {
-            
         }
     }
 }

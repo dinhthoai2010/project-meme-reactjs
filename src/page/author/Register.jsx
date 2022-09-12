@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 
 const Register = () => {
@@ -18,7 +19,7 @@ const Register = () => {
                                 <input type="password" className="form-control" placeholder="Mật khẩu" required />
                                 <input type="password" className="form-control" placeholder="Nhập lại mật khẩu" required />
                                 <div className="ass1-login__send">
-                                    <a href="dang-nhap.html">Đăng nhập</a>
+                                    <Link to="/author/login">Đăng nhập</Link>
                                     <button type="submit" className="ass1-btn">Đăng ký</button>
                                 </div>
                             </form>

@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN } from "../constants"
 import { api } from "./api"
 
 export const authorService = {
@@ -11,9 +12,10 @@ export const authorService = {
         return api.call().get('/post/getListPagination.php', { params })
     },
     fetchMe(token) {
-        return api.call().post('/member/checktoken.php', {token:token} ,{headers: { 'content-type': 'application/x-www-form-urlencoded' }})
+        return api.call().post('/member/checktoken.php', { token: token }, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
     },
     getUser(id) {
-        return api.call().get('/member/member.php', { userid: id })
+        // const token = localStorage.getItem(ACCESS_TOKEN);, { headers: { 'Authorization': 'Bearer ' + token, 'content-type': 'application/x-www-form-urlencoded' } }
+        return api.call().get('/member/member.php?userid='+id)
     }
 }

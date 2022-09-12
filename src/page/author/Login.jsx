@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { asyLogin } from "../../store/author/action";
 
@@ -8,7 +8,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [user, setUser] = useState({
-    email: "test02@gmail.com",
+    email: "admin@gmail.com",
     password: "123456"
   })
 
@@ -16,13 +16,12 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setUser({
-      email: "test02@gmail.com",
+      email: "test01@gmail.com",
       password: '123456'
     })
     dispatch(asyLogin(user)).then(user => {
       if(user.ok===200){
-        // history.push('/');
-        console.log(user)
+        history.push('/');
       }
       
     })
@@ -58,7 +57,7 @@ const Login = () => {
                   <a href="/">Copy</a>
                 </div>
                 <div className="ass1-login__send">
-                  <a href="dang-ky.html">Đăng ký một tài khoản</a>
+                  <Link to="/author/register">Đăng ký một tài khoản</Link>
                   <button type="submit" className="ass1-btn">
                     Đăng nhập
                   </button>

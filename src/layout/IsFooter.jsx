@@ -1,13 +1,12 @@
 import React from 'react';
 import Footer from '../components/Footer';
 
-const IsFooter = () => {
+const IsFooter = ({children}) => {
     return (
-        <div>
-            
-
+        <>
+            {children}
             <Footer />
-        </div>
+        </>
     );
 };
 

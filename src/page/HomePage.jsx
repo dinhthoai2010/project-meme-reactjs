@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Waypoint } from 'react-waypoint';
-import Header from '../components/Header';
 import Posts from '../components/Posts';
-import SideBar from '../components/SideBar';
 import { asyReducerGetListPost } from '../store/post/actions';
 
 const HomePage = () => {
@@ -38,30 +36,26 @@ const HomePage = () => {
     }
 
     return (
-        <>
-            <Header />
-            <main>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8">
-                            <div className="ass1-section__list">
-                                {posts.length > 0 && posts.map(post => <Posts post={post} key={post.id} />)}
-                                {isLoadMore
-                                    ?
-                                    <div style={{ height: 100 }}>
-                                        {
-                                            !loading ? <Waypoint
-                                                onEnter={handleWaypointEnter} /> : 'Loadding'
-                                        }
-                                    </div> : <div style={{ height: 100 }}> het bai</div>
-                                }
-                            </div>
+        <main>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-8">
+                        <div className="ass1-section__list">
+                            {posts.length > 0 && posts.map(post => <Posts post={post} key={post.id} />)}
+                            {isLoadMore
+                                ?
+                                <div style={{ height: 100 }}>
+                                    {
+                                        !loading ? <Waypoint
+                                            onEnter={handleWaypointEnter} /> : 'Loadding'
+                                    }
+                                </div> : <div style={{ height: 100 }}> het bai</div>
+                            }
                         </div>
-                        <SideBar />
                     </div>
                 </div>
-            </main>
-        </>
+            </div>
+        </main>
     );
 };
 

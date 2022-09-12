@@ -6,11 +6,12 @@ const Category = ({ show }) => {
     const category = useSelector(state => state.Post.listCategory)
     if (category.length === 0) return null;
     const length = category.length;
-    const row = length / 5;
+    const column = 5;
+    const row = length / column;
     const menu = () => {
         let item = [];
         let k = 0;
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < column; i++) {
             item[i] = []
             for (let j = 0; j < row && k<length; j++) {
                 item[i][j] = category[k]
@@ -27,7 +28,7 @@ const Category = ({ show }) => {
                     menu().map((item, key) => {
                         return (
                             <ul key={key}>
-                                {item.map(itemMenu => <li key={itemMenu.id}><Link to={`category/${itemMenu.id}`}>{itemMenu.text}</Link></li>)}
+                                {item.map(itemMenu => <li key={itemMenu.id}><Link to={`/category/${itemMenu.id}`}>{itemMenu.text}</Link></li>)}
                             </ul>
                         )
                     })

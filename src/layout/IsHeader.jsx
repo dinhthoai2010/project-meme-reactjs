@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
 
-const IsHeader = () => {
+const IsHeader = ({children}) => {
     return (
-        <div>
+        <>
             <Header />
-        </div>
+            {children}
+        </>
     );
 };
 

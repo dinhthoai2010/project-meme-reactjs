@@ -37,8 +37,8 @@ const Header = () => {
                         </ul>
                     </nav>
                     <SearchForm />
-                    <Link to="/upload" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" /> Upload</Link>
-                    <Link to="/login" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" />  Login</Link>
+                    <Link to="/profile/upload" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" /> Upload</Link>
+                    <Link to="/author/login" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" />  Login</Link>
                 </div>
             </div>
         </header>

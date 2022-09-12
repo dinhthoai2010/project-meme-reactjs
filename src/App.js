@@ -1,56 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   BrowserRouter,
-  Switch,
-  Route
 } from "react-router-dom";
-import HomePage from "./page/HomePage";
-import Login from "./page/author/Login";
-import Register from "./page/author/Register";
-import Profile from "./page/author/Profile";
-import ChangePass from "./page/author/ChangePass";
-import UploadImg from "./page/post/UploadImg";
-import PostDes from "./page/post/PostDes";
-import PostHistory from "./page/author/PostHistory";
-import ListPost from "./page/post/ListPost";
+
+import Routers from "./router";
+import { asyFetchMe } from "./store/author/action";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(asyFetchMe())
+  }, []);
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/post/add">
-          <HomePage />
-        </Route>
-        <Route path="/post/:slug">
-          <PostDes />
-        </Route>
-        <Route path="/upload">
-          <UploadImg />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/profile/post-list">
-          <PostHistory />
-        </Route>
-        <Route path="/category/:id">
-          <ListPost />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/change-password">
-          <ChangePass />
-        </Route>
-        <Route path="/">
-          <HomePage />
-        </Route>
-      </Switch>
+      <Routers />
     </BrowserRouter>
   );
 }

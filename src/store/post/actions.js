@@ -33,9 +33,9 @@ export function asyGetListCategory() {
         try {
             const listsCategory = await postService.getListCategory()
             let data = listsCategory.data.categories;
-            if(data===undefined) return {
+            if (data === undefined) return {
                 status: 0,
-                message : "Co loi say ra"
+                message: "Co loi say ra"
             }
             dispatch(reducerGetListCategory(data))
         } catch (error) {
@@ -51,6 +51,18 @@ function reducerGetListCategory(data) {
         type: GET_LIST_CATEGORY,
         payload: {
             posts: data
+        }
+    }
+}
+
+export const handleUploadImage = (dataForm) => {
+
+    return async (dispatch) => {
+        try {
+            const res = await postService.uploadImg(dataForm)
+            return res.data
+        } catch (error) {
+            return error.response.data
         }
     }
 }
