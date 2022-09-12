@@ -30,10 +30,10 @@ export function asyFetchMe() {
         try {
             const res = await authorService.fetchMe(token)
             let user = res.data.user;
-            // if (user.id) {
-            //     user = await authorService.getUser(user.id);
-            //     user = mappingUser(user.data.user) 
-            // }
+            if (user.id) {
+                user = await authorService.getUser(user.id);
+                user = mappingUser(user.data.user) 
+            }
             dispatch(reducerLogin(user, token))
         } catch (error) {
             console.log(error)

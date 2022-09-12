@@ -7,7 +7,7 @@ export const asyGetComment = (id) => {
         const res = await commentServices.getComment(id)
         const comment = res.data.data;
         const cm = mappingComment(comment)
-
+        console.log(cm)
     }
 }
 
@@ -20,12 +20,9 @@ export const reducerGetComment = comment => {
     }
 }
 
-export const asyAddComment = () => {
+export const asyAddComment = (comment) => {
     return async dispatch => {
-        const comment = {
-            postid: 494,
-            comment: "Tuy phong comment"
-        }
+        
         const res = await commentServices.addComment(comment)
         console.log(res)
     }

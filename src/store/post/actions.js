@@ -1,5 +1,5 @@
-import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_POST_DES } from "../../constants"
-import { hasListPost, mappingCategory, mappingComment, mappingPostDes, mappingUser } from "../../helpers"
+import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_LIST_POST_USER, GET_POST_DES } from "../../constants"
+import { getUserId, hasListPost, mappingCategory, mappingComment, mappingPostDes, mappingUser } from "../../helpers"
 import { authorService } from "../../services/author"
 import { commentServices } from "../../services/comment"
 import { postService } from "../../services/post"
@@ -110,8 +110,8 @@ export const aysGetPost = (id) => {
 
                 post = {
                     user: mappingUser(user.data.user),
-                    post :{...mappingPostDes(post.post), count:comment.length},
-                    categories:mappingCategory(post.categories)
+                    post: { ...mappingPostDes(post.post), count: comment.length },
+                    categories: mappingCategory(post.categories)
                 }
                 dispatch(reducerGetPost(post, user))
                 dispatch(reducerGetComment(comment))
@@ -134,3 +134,27 @@ function reducerGetPost(post) {
     }
 }
 
+
+
+export const asyListPostByUser = (params) => {
+    return async (dispatch) => {
+        // const userId = getUserId();
+        try {
+            const res = await postService.getListByUser(params);
+           
+            const posts = hasListPost(res.data.posts)
+            dispatch(reducerGetPostByUser(posts))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const reducerGetPostByUser = (posts) => {
+    return {
+        type: GET_LIST_POST_USER,
+        payload: {
+            posts
+        }
+    }
+}

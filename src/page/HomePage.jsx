@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Waypoint } from 'react-waypoint';
 import Posts from '../components/Posts';
+import SideBar from '../components/SideBar';
 import { asyReducerGetListPost } from '../store/post/actions';
 
 const HomePage = () => {
@@ -54,6 +55,7 @@ const HomePage = () => {
                             }
                         </div>
                     </div>
+                    <SideBar />
                 </div>
             </div>
         </main>

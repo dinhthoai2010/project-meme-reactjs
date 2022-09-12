@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { asySearchPost } from '../../store/post/actions';
 import InputSearch from '../shared/InputSearch';
 import { Link, useHistory } from 'react-router-dom';
-import { getQueryStr } from '../../helpers';
 
 const SearchForm = () => {
     const [keySearch, setKeySearch] = useState('');

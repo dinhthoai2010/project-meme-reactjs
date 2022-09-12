@@ -1,8 +1,9 @@
-import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_POST_DES } from "../../constants";
+import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_LIST_POST_USER, GET_POST_DES } from "../../constants";
 
 const intState = {
     listPost: [],
     listCategory: [],
+    listPostUser: [],
     PostDes: {},
     postSearch: []
 }
@@ -30,6 +31,11 @@ function reducer(postState = intState, action) {
             return {
                 ...postState,
                 PostDes: action.payload.post
+            }
+        case GET_LIST_POST_USER: 
+            return {
+                ...postState,
+                listPostUser: action.payload.posts
             }
         default:
             return postState

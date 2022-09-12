@@ -9,7 +9,6 @@ import PostContent from './PostDes/PostContent';
 import ListStart from './PostDes/ListStart';
 import ListStartDes from './PostDes/ListStartDes';
 import ListCategory from './PostDes/ListCategory';
-import { asyAddComment } from '../../store/comment/action';
 
 const PostDes = () => {
     const post = useSelector(state => state.Post.PostDes)
@@ -17,7 +16,6 @@ const PostDes = () => {
     const params = useParams()
     useEffect(() => {
         dispatch(aysGetPost(params.id))
-        // dispatch(asyAddComment())
     }, []);
 
     if (post.post === undefined) return null;

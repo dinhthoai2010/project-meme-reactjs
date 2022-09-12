@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN, GET_POST_COMMENT } from "../../constants";
+import { GET_POST_COMMENT } from "../../constants";
 
 
 const intState = {

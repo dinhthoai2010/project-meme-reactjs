@@ -4,6 +4,9 @@ export const postService = {
     getList(params) {
         return api.call().get('/post/getListPagination.php',{params})
     },
+    getListByUser(params) {
+        return api.token().get('/post/getListPostUserID.php',{params})
+    },
     getListCategory () {
         return api.call().get('/categories/index.php')
     },
