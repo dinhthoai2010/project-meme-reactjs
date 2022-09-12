@@ -23,6 +23,7 @@ const HomePage = () => {
             return
         }
         setLoading(true);
+
         dispatch(asyReducerGetListPost(param)).then((value) => {
             if (checkFirst && value.length !== pagesize) {
                 setLoad(false);
@@ -49,7 +50,7 @@ const HomePage = () => {
                                         !loading ? <Waypoint
                                             onEnter={handleWaypointEnter} /> : 'Loadding'
                                     }
-                                </div> : <div style={{ height: 100 }}> het bai</div>
+                                </div> : <div style={{ height: 100 }}> không còn bài</div>
                             }
                         </div>
                     </div>

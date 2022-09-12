@@ -57,7 +57,7 @@ const Login = () => {
                   <a href="/">Copy</a>
                 </div>
                 <div className="ass1-login__send">
-                  <Link to="/author/register">Đăng ký một tài khoản</Link>
+                  <Link to="/auth/register">Đăng ký một tài khoản</Link>
                   <button type="submit" className="ass1-btn">
                     Đăng nhập
                   </button>

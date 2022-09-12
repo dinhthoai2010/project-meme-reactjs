@@ -7,7 +7,7 @@ const PostDes = ({ post }) => {
         <div className="ass1-section__content">
             <p >{content}</p>
             <div className="ass1-section__image">
-                <Link to={`post/` + id}>
+                <Link to={`/post/` + id}>
                     <img src={image} alt="" />
                 </Link>
             </div>

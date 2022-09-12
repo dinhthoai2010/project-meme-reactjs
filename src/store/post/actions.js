@@ -1,8 +1,10 @@
-import { GET_LIST_CATEGORY } from "../../constants"
-import { hasListPost } from "../../helpers"
+import { configure } from "@testing-library/react"
+import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_POST_DES } from "../../constants"
+import { hasListPost, mappingComment } from "../../helpers"
+import { commentServices } from "../../services/comment"
 import { postService } from "../../services/post"
+import { reducerGetComment } from "../comment/action"
 
-export const GET_LIST_POST = "GET_LIST_POST"
 
 export function asyReducerGetListPost(params) {
     return async (dispatch) => {
@@ -66,3 +68,51 @@ export const handleUploadImage = (dataForm) => {
         }
     }
 }
+
+export const asySearchPost = (key, auto = false) => {
+    console.log(key, auto)
+    return async dispatch => {
+        try {
+            const listPost = await postService.getPostByKey(key);
+            const lists = listPost.data;
+            const hasPost = hasListPost(lists.posts)
+            if (auto)
+                dispatch(reducerGetListPostSearch(hasPost))
+            return hasPost;
+        } catch (error) {
+            return error
+        }
+    }
+}
+
+function reducerGetListPostSearch(posts) {
+    return {
+        type: GET_LIST_POST_SEARCH,
+        payload: {
+            posts
+        }
+    }
+}
+
+
+export const aysGetPost = (id) => {
+    return async dispatch => {
+        const resPost = await postService.getPost(id);
+        const resComment = await commentServices.getComment(28);
+        const post = resPost.data.data;
+        const comment = mappingComment(resComment.data.comments)
+        dispatch(reducerGetPost(post))
+        dispatch(reducerGetComment(comment))
+    }
+}
+
+function reducerGetPost(post) {
+    console.log(post)
+    return {
+        type: GET_POST_DES,
+        payload: {
+            post
+        }
+    }
+}
+

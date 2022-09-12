@@ -10,17 +10,19 @@ import Profile from '../page/author/Profile';
 import Register from '../page/author/Register';
 import HomePage from '../page/HomePage';
 import ListPost from '../page/post/ListPost';
+import PostDes from '../page/post/PostDes';
 import UploadImg from '../page/post/UploadImg';
+
 
 const Routers = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/author">
+                <Route path="/auth">
                     <IsFooter>
                         <Switch>
-                            <Route path='/author/login' component={Login} />
-                            <Route path='/author/register' component={Register} />
+                            <Route path='/auth/login' component={Login} />
+                            <Route path='/auth/register' component={Register} />
                         </Switch>
                     </IsFooter>
                 </Route>
@@ -37,12 +39,24 @@ const Routers = () => {
                     </FullLayout>
                 </Route>
 
+                <Route path="/search">
+                    <FullLayout>
+                        <ListPost />
+                    </FullLayout>
+                </Route>
+
+                <Route path="/post/:id">
+                    <FullLayout>
+                        <PostDes />
+                    </FullLayout>
+                </Route>
+
+
                 <Route path='/'>
                     <IsHeader>
                         <Switch>
-                        <Route path='/category/:id' ><ListPost /></Route>
+                            <Route path='/category/:id' ><ListPost /></Route>
                             <HomePage />
-                            
                         </Switch>
                     </IsHeader>
                 </Route>

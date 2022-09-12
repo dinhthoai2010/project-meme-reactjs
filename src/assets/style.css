@@ -2584,3 +2584,15 @@ select.form-control:focus {
   height: 0;
   opacity: 0;
 }
+
+.list-search ul {
+  position: absolute;
+  background: rgba(234, 232, 232, 0.63);
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.list-search ul li {
+  margin-bottom: 10px;
+}
