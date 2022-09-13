@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { formatRelativeDate } from '../../helpers/day';
 
 const Author = ({ author, time }) => {
@@ -6,9 +7,9 @@ const Author = ({ author, time }) => {
     const {dateRelative} = formatRelativeDate(time, false)
     return (
         <div className="ass1-section__head">
-            <a href="bai-viet-chi-tiet.html" className="ass1-section__avatar ass1-avatar"><img src={author.avatar} alt="" /></a>
+            <Link to="/profile/" className="ass1-section__avatar ass1-avatar"><img src={author.avatar} alt="" /></Link>
             <div>
-                <a href="bai-viet-chi-tiet.html" className="ass1-section__name">{author.name}</a>
+                <Link to="/profile/" className="ass1-section__name">{author.name}</Link>
                 <span className="ass1-section__passed">{dateRelative}</span>
             </div>
         </div>

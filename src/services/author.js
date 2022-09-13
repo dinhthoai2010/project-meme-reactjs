@@ -5,18 +5,18 @@ export const authorService = {
         return api.call().post('/member/login.php', params)
     },
     register(params) {
-        return api.call().get('/post/getListPagination.php', { params })
+        return api.call().post('/member/register.php', params)
     },
     changePass(params) {
-        return api.call().get('/post/getListPagination.php', { params })
+        return api.token().get('/member/password.php', params)
     },
     fetchMe(token) {
         return api.author().post('/member/checktoken.php', { token: token })
     },
     getUser(id) {
-        return api.call().get('/member/member.php?userid='+id)
+        return api.call().get('/member/member.php?userid=' + id)
     },
-    updateUser(formData){
-        return api.token().post("/member/update.php",formData);
+    updateUser(formData) {
+        return api.token().post("/member/update.php", formData);
     }
 }

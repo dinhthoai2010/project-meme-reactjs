@@ -2620,3 +2620,11 @@ select.form-control:focus {
 .ass1-section__isotope-init1 {
   column-count: 2
 }
+.error-class {
+  color: #f00;
+  margin-top: -20px;
+  display: block;
+}
+.form-login,.form-register{
+  text-align: start;
+}

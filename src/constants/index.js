@@ -13,6 +13,7 @@ export const GET_LIST_POST_USER = "GET_LIST_POST_USER"
 //COMMENT
 
 export const GET_POST_COMMENT ="GET_POST_COMMENT"
+export const ADD_POST_COMMENT ="ADD_POST_COMMENT"
 
 // day
 export const DATE_TEMPLATE = 'DD/MM/YYYY';

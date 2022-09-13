@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getUserId } from '../../helpers';
+import { getToken } from '../../helpers';
 import { asyFetchMe } from '../../store/author/action';
 import { asyGetListCategory, asyListPostByUser } from '../../store/post/actions';
 import Category from './Category';
@@ -14,14 +14,17 @@ const Header = () => {
         setShow(show ? false : true)
     }
     const dispatch = useDispatch();
-
-    const params = {
-        userid: 2,
-    }
+    const token = getToken();
     useEffect(() => {
         dispatch(asyGetListCategory());
-        dispatch(asyFetchMe());
-        dispatch(asyListPostByUser(params));
+        if (token) {
+            dispatch(asyFetchMe()).then(user => {
+                const params = {
+                    userid: user?.id,
+                } 
+            dispatch(asyListPostByUser(params));
+            });
+        }
 
     }, []);
     return (

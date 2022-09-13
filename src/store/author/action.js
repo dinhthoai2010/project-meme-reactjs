@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN, ACT_LOGIN_SUCCESS } from "../../constants";
-import { mappingUser } from "../../helpers";
+import { mappingUser, setToken } from "../../helpers";
 import { authorService } from "../../services/author"
 
 export function asyLogin(params) {
@@ -21,20 +21,23 @@ export function asyLogin(params) {
     }
 }
 
-
 export function asyFetchMe() {
     return async dispatch => {
-
         const token = localStorage.getItem(ACCESS_TOKEN);
         if (token === '') return null;
+        if (typeof (token) === "undefined") {
+            setToken()
+            return {}
+        }
         try {
             const res = await authorService.fetchMe(token)
             let user = res.data.user;
             if (user?.id) {
                 user = await authorService.getUser(user?.id);
-                user = mappingUser(user.data.user) 
+                user = mappingUser(user.data.user)
             }
             dispatch(reducerLogin(user, token))
+            return user
         } catch (error) {
             console.log(error)
         }
@@ -54,11 +57,42 @@ function reducerLogin(user, token) {
 
 export const asyUpdateUser = (formData) => {
     return async dispatch => {
-       try {
-        const res =await authorService.updateUser(formData)
-        return res.data
-       } catch (error) {
+        try {
+            const res = await authorService.updateUser(formData)
+            return res.data
+        } catch (error) {
             return error
-       }
+        }
+    }
+}
+
+export const handleLogout = () => {
+    // dispatch(reducerLogin({},''))
+}
+
+export const asyRegister = (data) => {
+    return async dispatch => {
+        try {
+            const res = await authorService.register(data)
+            const user = mappingUser(res.data.user)
+            dispatch(reducerLogin(user, res.data.token))
+            return {
+                status: 200,
+                user
+            }
+        } catch (error) {
+            return error
+        }
+    }
+}
+
+export const asyChangePassword = (data) => {
+    return async dispatch => {
+        try {
+            const res = await authorService.changePass(data)
+            return res.data
+        } catch (error) {
+            return error
+        }
     }
 }

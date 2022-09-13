@@ -58,6 +58,11 @@ export function mappingUser(user) {
 export const getToken = () => {
     return localStorage.getItem(ACCESS_TOKEN);
 }
+export const setToken = (token = null) => {
+    if(token===null || token ==='') 
+        localStorage.removeItem(ACCESS_TOKEN);
+    else localStorage.setItem(ACCESS_TOKEN, token)
+}
 
 export const getQueryStr = name => {
     return new URLSearchParams(window.location.search).get(name)

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 const CommentPost = () => {
     const comment = useSelector(state => state.Comment.listComment)
+
     return (
         <div>
             <CommentForm />

@@ -27,8 +27,6 @@ const SearchForm = () => {
         history.push('/search/?q=' + queryStrURI)
     }
 
-
-
     return (
         <div className="ass1-header__search">
             <form action="#" onSubmit={handleSubmit}>

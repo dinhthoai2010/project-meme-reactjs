@@ -1,4 +1,4 @@
-import { GET_POST_COMMENT } from "../../constants";
+import { ADD_POST_COMMENT, GET_POST_COMMENT } from "../../constants";
 import { mappingComment } from "../../helpers";
 import { commentServices } from "../../services/comment"
 
@@ -14,6 +14,15 @@ export const asyGetComment = (id) => {
 export const reducerGetComment = comment => {
     return {
         type: GET_POST_COMMENT,
+        payload: {
+            comment
+        }
+    }
+}
+
+export const reducerAddComment = comment => {
+    return {
+        type: ADD_POST_COMMENT,
         payload: {
             comment
         }

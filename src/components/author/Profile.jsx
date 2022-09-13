@@ -1,12 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import {setToken } from '../../helpers';
 
-const Profile = ({countPost}) => {
-
+const Profile = ({ countPost }) => {
+    const history = useHistory();
     const user = useSelector(state => state.User.user)
-    console.log(user)
-    if(!user) return null;
+   
+    if (!user) return null;
+   
+    
+    const handleLogout = () => {
+        setToken();
+        history.push('/');
+    }
     return (
         <div className="ass1-head-user">
             <div className="ass1-head-user__content">
@@ -21,7 +28,7 @@ const Profile = ({countPost}) => {
                         <Link to="#" className="ass1-head-user__btn-follow ass1-btn">Theo dõi</Link>
                         <Link to="/profile/chang-pass" className="ass1-head-user__btn-follow ass1-btn">Đổi mật khẩu</Link>
                         <Link to="/profile/me" className="ass1-head-user__btn-follow ass1-btn">Profile</Link>
-                        {/* <a href="#" class="ass1-head-user__btn-options ass1-btn-icon"><i class="icon-Options"></i></a> */}
+                        <button className="ass1-btn" onClick={handleLogout}><i class="fa fa-sign-in" aria-hidden="true"></i></button>
                     </div>
                     <div className="ass1-head-user__info-statistic">
                         <div className="ass1-btn-icon"><i className="icon-Post" /><span>Bài viết: {countPost}</span></div>
