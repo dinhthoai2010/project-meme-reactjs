@@ -33,8 +33,8 @@ const Routers = () => {
                             <Route path='/profile/chang-pass' component={ChangePass} />
                             <Route path='/profile/post' component={ListPost} />
                             <Route path='/profile/upload' component={UploadImg} />
-                            <Route path='/profile/history' component={PostHistory} />
-                            <Route path='/profile' component={Profile} />
+                            <Route path='/profile/me' component={Profile} />
+                            <Route path='/profile/' component={PostHistory} />
                         </Switch>
                     </FullLayout>
                 </Route>

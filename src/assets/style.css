@@ -2615,3 +2615,8 @@ select.form-control:focus {
   column-gap: 10px;
   margin-left: 20px;
 }
+
+
+.ass1-section__isotope-init1 {
+  column-count: 2
+}
