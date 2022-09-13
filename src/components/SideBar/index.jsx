@@ -19,9 +19,7 @@ const SideBar = () => {
                 {!token && <div>Vui lòng đăng nhập để xem nội dung này
                     <Link to="login">Đăng nhập</Link>
                 </div>}
-
                 {postById && postById.map(post => <Posts post={post} key={post.id} author = {false} />)}
-
             </aside>
         </div>
     );
