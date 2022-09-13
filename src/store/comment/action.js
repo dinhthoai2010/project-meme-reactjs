@@ -22,8 +22,16 @@ export const reducerGetComment = comment => {
 
 export const asyAddComment = (comment) => {
     return async dispatch => {
-        
-        const res = await commentServices.addComment(comment)
-        console.log(res)
+        try {
+            const res = await commentServices.addComment(comment)
+
+            if(res.data.status===200){
+                // const comment = await
+            }
+
+            console.log(res)
+        } catch (error) {
+            return error
+        }
     }
 }

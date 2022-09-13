@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import { handleUploadImage } from '../../store/post/actions';
 
@@ -19,7 +20,6 @@ const UploadImg = () => {
         const formData = new FormData();
         const data = { ...dataUpload };
         data.category = data.category.join(',');
-
         for (const key in data) {
             formData.append(key, data[key]);
         }
@@ -143,9 +143,6 @@ const FormUploadImage = ({ formData }) => {
     }
 
     const handleSelectImag = (event) => {
-
-        console.log(URL.createObjectURL(event.target.files[0]));
-
         setDataUpload(prev => ({
             ...prev, url_image: URL.createObjectURL(event.target.files[0]),
             obj_image: event.target.files[0]

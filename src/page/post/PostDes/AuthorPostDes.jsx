@@ -2,7 +2,7 @@ import React from 'react';
 import { formatRelativeDate } from '../../../helpers/day';
 
 const AuthorPostDes = ({ user, date = null }) => {
-    if (user.id === undefined) return null;
+    if (!user) return null;
 
     const { dateRelative } = formatRelativeDate(date, false)
 

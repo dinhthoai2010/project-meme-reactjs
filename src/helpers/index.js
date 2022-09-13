@@ -80,11 +80,10 @@ export const mappingComment = comments => {
     return cm;
 }
 
-export const getUserId= () =>{
-    return 10;
+export const getUserId = () => {
+    return 1
 }
 
-
-export const getPostId= () =>{
-    return 10;
+export const getPostId = () => {
+   return 10;
 }

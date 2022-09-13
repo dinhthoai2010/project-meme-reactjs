@@ -9,11 +9,10 @@ const Comment = ({comment}) => {
             <div className="ass1-comments__Item">
                 <a href="/" className="ass1-comments__name">{comment.user.name}</a>
                 <span className="ass1-comments__passed"> {dateRelative} </span>
-                <a href="/" className="ass1-comments__btn-reply ass1-btn-icon"><i className="icon-Reply">Trả lời</i></a>
                 <p dangerouslySetInnerHTML={{__html:comment.comment}} ></p>
                 <div className="ass1-comments__info">
-                    <a href="/" className="ass1-comments__btn-upvote ass1-btn-icon"><i className="icon-Upvote" /><span>901</span></a>
-                    <a href="/" className="ass1-comments__btn-down ass1-btn-icon"><i className="icon-Downvote" /><span>36</span></a>
+                    <a href="/" className="ass1-comments__btn-upvote ass1-btn-icon"><i className="icon-Upvote" /><span>0</span></a>
+                    <a href="/" className="ass1-comments__btn-down ass1-btn-icon"><i className="icon-Downvote" /><span>0</span></a>
                 </div>
             </div>
         </div>

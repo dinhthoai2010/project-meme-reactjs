@@ -1,7 +1,7 @@
 import { ACCESS_TOKEN, ACT_LOGIN_SUCCESS } from "../../constants";
 
 const intState = {
-    user: {},
+    user: null,
     token: ''
 }
 

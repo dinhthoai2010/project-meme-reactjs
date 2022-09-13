@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 const ListCategory = ({categories}) => {
     if(categories === undefined) return null
-
-    console.log(categories)
     return (
         <div className='d-flex category-des'>
             <strong>Danh muc : </strong>

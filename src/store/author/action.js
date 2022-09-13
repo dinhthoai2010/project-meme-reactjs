@@ -30,8 +30,8 @@ export function asyFetchMe() {
         try {
             const res = await authorService.fetchMe(token)
             let user = res.data.user;
-            if (user.id) {
-                user = await authorService.getUser(user.id);
+            if (user?.id) {
+                user = await authorService.getUser(user?.id);
                 user = mappingUser(user.data.user) 
             }
             dispatch(reducerLogin(user, token))
@@ -49,5 +49,16 @@ function reducerLogin(user, token) {
             user,
             token
         }
+    }
+}
+
+export const asyUpdateUser = (formData) => {
+    return async dispatch => {
+       try {
+        const res =await authorService.updateUser(formData)
+        return res.data
+       } catch (error) {
+            return error
+       }
     }
 }

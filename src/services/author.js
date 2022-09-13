@@ -15,5 +15,8 @@ export const authorService = {
     },
     getUser(id) {
         return api.call().get('/member/member.php?userid='+id)
+    },
+    updateUser(formData){
+        return api.token().post("/member/update.php",formData);
     }
 }

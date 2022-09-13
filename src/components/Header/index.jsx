@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getUserId } from '../../helpers';
 import { asyFetchMe } from '../../store/author/action';
 import { asyGetListCategory, asyListPostByUser } from '../../store/post/actions';
 import Category from './Category';
@@ -16,13 +17,12 @@ const Header = () => {
 
     const params = {
         userid: 2,
-        // pagesize: 5,
-        // currPage: 1
     }
     useEffect(() => {
         dispatch(asyGetListCategory());
         dispatch(asyFetchMe());
         dispatch(asyListPostByUser(params));
+
     }, []);
     return (
         <header>
@@ -41,7 +41,7 @@ const Header = () => {
                     </nav>
                     <SearchForm />
                     <Link to="/profile/upload" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" /> Upload</Link>
-                    {user.id === undefined ?
+                    {!user ?
                         <Link to="/auth/login" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" />  Login</Link> :
                         <Link to="/profile/" className="d-flex user-header">
                             <div className='img-user-header'>

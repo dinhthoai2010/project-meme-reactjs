@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { asyAddComment } from '../../store/comment/action';
+import { useDispatch } from 'react-redux';
 
 const CommentForm = () => {
+    const params  = useParams();
+    const dispatch = useDispatch()
 
     const [comment, setComment] = useState({
-        idPost: 434,
-        content: ''
+        postid: params.id,
+        comment: ''
     })
     const handleSubmit = (ele) => {
-        console.log(comment)
-        asyAddComment(comment)
+        ele.preventDefault()
+        dispatch(asyAddComment(comment))
     }
     return (
         <div className="ass1-add-comment">
-            <form action="#">
-                <input type="text" value={comment.content} onChange={(ele) => setComment({ ...comment, content: ele.target.value })} className="form-control ttg-border-none" placeholder="Thêm một bình luận" />
+            <form  onSubmit={handleSubmit}>
+                <input type="text" value={comment.comment} onChange={(ele) => setComment({ ...comment, comment: ele.target.value })} className="form-control ttg-border-none" placeholder="Thêm một bình luận" />
+                <div className="ass1-add-comment__content">
+                    <button type='submit' className='btn'>Gửi comment</button>
+                    <a href="/" className="ass1-add-comment__btn-save ass1-btn-icon"><span>180</span><i className="icon-Submit_Tick" /></a>
+                </div>
             </form>
-            <div className="ass1-add-comment__content">
-                <button className='btn' onClick={handleSubmit}>Gửi comment</button>
-                <a href="/" className="ass1-add-comment__btn-save ass1-btn-icon"><span>180</span><i className="icon-Submit_Tick" /></a>
-            </div>
+
         </div>
     );
 };

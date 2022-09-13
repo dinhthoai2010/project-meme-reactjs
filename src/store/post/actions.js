@@ -138,19 +138,19 @@ function reducerGetPost(post) {
 
 export const asyListPostByUser = (params) => {
     return async (dispatch) => {
-        // const userId = getUserId();
         try {
             const res = await postService.getListByUser(params);
-           
             const posts = hasListPost(res.data.posts)
             dispatch(reducerGetPostByUser(posts))
         } catch (error) {
             console.log(error)
+            return null
         }
     }
 }
 
 export const reducerGetPostByUser = (posts) => {
+
     return {
         type: GET_LIST_POST_USER,
         payload: {

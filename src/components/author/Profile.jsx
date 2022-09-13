@@ -5,14 +5,12 @@ import { useSelector } from 'react-redux';
 const Profile = ({countPost}) => {
 
     const user = useSelector(state => state.User.user)
-
     console.log(user)
-    if(user.id === undefined) return;
-
+    if(!user) return null;
     return (
         <div className="ass1-head-user">
             <div className="ass1-head-user__content">
-                <div className="ass1-head-user__image"><a href="/"><img src={user.avater} alt="" /></a></div>
+                <div className="ass1-head-user__image"><a href="/"><img src={user.avatar} alt="" /></a></div>
                 <div className="ass1-head-user__info">
                     <div className="ass1-head-user__info-head">
                         <div className="ass1-head-user__name">
