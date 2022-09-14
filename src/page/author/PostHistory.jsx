@@ -11,7 +11,7 @@ const PostHistory = () => {
     useEffect(() => {
         const token = getToken()
         if(token==null)  history.push('/auth/login');
-      }, []);
+      }, [history]);
 
     const postById = useSelector(state => state.Post.listPostUser)
     
@@ -20,7 +20,7 @@ const PostHistory = () => {
             <div className="container">
                 <Profile countPost={postById.length}/>
                 <div className="ass1-section__wrap  ass1-section__isotope-init ass1-section__isotope-init1">
-                    {postById.length && postById.map(post =>
+                    {postById.length>0 && postById.map(post =>
                             <Posts key={post.id} post={post} />
                         )}
                 </div>

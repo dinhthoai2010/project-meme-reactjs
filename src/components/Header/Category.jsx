@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Category = ({ show }) => {
+const Category = ({ show, onClickMenu }) => {
     const category = useSelector(state => state.Post.listCategory)
     if (category.length === 0) return null;
     const length = category.length;
@@ -28,7 +28,7 @@ const Category = ({ show }) => {
                     menu().map((item, key) => {
                         return (
                             <ul key={key}>
-                                {item.map(itemMenu => <li key={itemMenu.id}><Link to={`/category/${itemMenu.id}`}>{itemMenu.text}</Link></li>)}
+                                {item.map(itemMenu => <li onClick={onClickMenu} key={itemMenu.id}><Link  to={`/category/${itemMenu.id}`}>{itemMenu.text}</Link></li>)}
                             </ul>
                         )
                     })

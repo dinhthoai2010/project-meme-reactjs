@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { getToken } from '../../helpers';
 import { asyRegister } from '../../store/author/action';
@@ -15,6 +15,10 @@ const Register = () => {
 
     const history = useHistory();
 
+    const [load, setLoad] = useState(false);
+    const [error, setError] = useState('')
+
+
     const token = getToken();
     const dispatch = useDispatch();
     useEffect(() => {
@@ -23,12 +27,19 @@ const Register = () => {
         }
     }, []);
 
-
     const onSubmit = data => {
+        setLoad(true)
+        setError('')
         dispatch(asyRegister(data)).then(user => {
-            if (user.status === 200) {
-                history.push('/');
-            }
+            setTimeout(() => {
+                if (user.status === 200) {
+                    history.push('/');
+                }
+                else {
+                    setError(user.error)
+                }
+                setLoad(false)
+            }, 500);
         })
     };
 
@@ -43,6 +54,7 @@ const Register = () => {
                     <p>Đăng ký một tài khoản</p>
                     <div className="ass1-login__form">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-register">
+                            {error && <div className="show-error">{error}</div>}
                             <input type="text"
                                 className="form-control"
                                 placeholder="Tên hiển thị"
@@ -80,7 +92,10 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Nhập lại mật khẩu" />
                             {errors.repassword && <span className="error-class">{errors.repassword.message}</span>}
+
+                            {load && <>Dang loadd</>}
                             <div className="ass1-login__send">
+
                                 <Link to="/auth/login">Đăng nhập</Link>
                                 <button type="submit" className="ass1-btn">Đăng ký</button>
                             </div>

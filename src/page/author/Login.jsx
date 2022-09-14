@@ -14,13 +14,24 @@ const Login = () => {
       history.push('/');
     }
   }, []);
-  
+
+  const [load, setLoad] = useState(false);
+  const [error, setError] = useState('')
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {
+    setLoad(true)
+    setError('')
     dispatch(asyLogin(data)).then(user => {
-      if (user.ok === 200) {
-        history.push('/');
-      }
+      setTimeout(() => {
+        if (user.ok === 200) {
+          history.push('/');
+        }
+        else {
+          setError(user.error)
+        }
+        setLoad(false)
+      }, 500);
+
     })
   };
 
@@ -34,13 +45,21 @@ const Login = () => {
           <p>Đăng nhập</p>
           <div className="ass1-login__form">
             <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
+              {error && <div className="show-error">{error}</div>}
               <input
-                {...register("email", { minLength: 2, required: "Email Address is required" })}
+                {...register("email", { 
+                  required: "Email khong duoc rong",
+                   
+                    pattern: {
+                      value : /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "email ko dung dinh dang"
+                    } })}
                 type="text"
                 className="form-control"
                 placeholder="Email"
               />
-              {errors.email && <span className="error-class">Không  được rỗng và lớn hơn 2</span>}
+               {errors.email && <span className="error-class">{errors.email.message}</span>}
+              {/* {errors.email && <span className="error-class">Không  được rỗng và lớn hơn 2</span>} */}
               <input
                 {...register("password", { minLength: 6, required: true })}
                 type="password"
@@ -49,7 +68,7 @@ const Login = () => {
               />
               {errors.password && <span className="error-class">Độ dài tối thiểu là 6</span>}
               <div className="showMessage" >
-                <>load</>
+                {load && <>Dang loadd</>}
               </div>
 
               <div className="ass1-login__send">

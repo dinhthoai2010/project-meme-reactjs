@@ -1,5 +1,5 @@
-import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_LIST_POST_USER, GET_POST_DES } from "../../constants"
-import { getUserId, hasListPost, mappingCategory, mappingComment, mappingPostDes, mappingUser } from "../../helpers"
+import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_F, GET_LIST_POST_SEARCH, GET_LIST_POST_USER, GET_POST_DES } from "../../constants"
+import { hasListPost, mappingCategory, mappingComment, mappingPostDes, mappingUser } from "../../helpers"
 import { authorService } from "../../services/author"
 import { commentServices } from "../../services/comment"
 import { postService } from "../../services/post"
@@ -20,9 +20,9 @@ export function asyReducerGetListPost(params) {
     }
 }
 
-function reducerGetListPost(posts) {
+function reducerGetListPost(posts,type=GET_LIST_POST) {
     return {
-        type: GET_LIST_POST,
+        type: type,
         payload: {
             posts: posts
         }
@@ -155,6 +155,22 @@ export const reducerGetPostByUser = (posts) => {
         type: GET_LIST_POST_USER,
         payload: {
             posts
+        }
+    }
+}
+
+export const aysGetPostByCategory = (params) => {
+    return async dispatch => {
+        try {
+            const lists = await postService.getListByCat(params);
+            let data = lists.data.posts
+            const posts = hasListPost(data);
+            let type = GET_LIST_POST;
+            if(params.currPage===1) type = GET_LIST_POST_F;
+            dispatch(reducerGetListPost(posts,type))
+            return posts
+        } catch (error) {
+            return error
         }
     }
 }

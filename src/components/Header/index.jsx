@@ -38,14 +38,13 @@ const Header = () => {
                         <ul className="ass1-header__menu">
                             <li>
                                 <button onClick={handleTogge} className='btn'>Danh mục</button>
-                                <Category show={show} />
+                                <Category show={show} onClickMenu={handleTogge}/>
                             </li>
                         </ul>
                     </nav>
                     <SearchForm />
                     <Link to="/profile/upload" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" /> Upload</Link>
-                    {!user ?
-                        <Link to="/auth/login" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" />  Login</Link> :
+                    {user && token ?
                         <Link to="/profile/" className="d-flex user-header">
                             <div className='img-user-header'>
                                 <img src={user.avatar} />
@@ -53,7 +52,8 @@ const Header = () => {
                             <div>
                                 <span>{user.email}</span>
                             </div>
-                        </Link>
+                        </Link>:
+                        <Link to="/auth/login" className='ass1-header__btn-upload ass1-btn'><i className="icon-Upvote" />  Login</Link> 
                     }
                 </div>
             </div>

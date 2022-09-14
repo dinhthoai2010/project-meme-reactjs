@@ -1,4 +1,4 @@
-import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_SEARCH, GET_LIST_POST_USER, GET_POST_DES } from "../../constants";
+import { GET_LIST_CATEGORY, GET_LIST_POST, GET_LIST_POST_F, GET_LIST_POST_SEARCH, GET_LIST_POST_USER, GET_POST_DES } from "../../constants";
 
 const intState = {
     listPost: [],
@@ -10,12 +10,17 @@ const intState = {
 
 function reducer(postState = intState, action) {
     switch (action.type) {
+        case GET_LIST_POST_F:
+            return {
+                ...postState,
+                listPost: action.payload.posts
+            }
         case GET_LIST_POST:
             return {
                 ...postState,
                 listPost: [...postState.listPost, ...action.payload.posts]
             }
-
+    
         case GET_LIST_CATEGORY:
             return {
                 ...postState,

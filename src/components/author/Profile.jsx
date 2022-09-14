@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import {setToken } from '../../helpers';
+import { useSelector, useDispatch } from 'react-redux';
+import { asyHandleLogout } from '../../store/author/action';
 
 const Profile = ({ countPost }) => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const user = useSelector(state => state.User.user)
-   
+
     if (!user) return null;
-   
-    
+
+
     const handleLogout = () => {
-        setToken();
-        history.push('/');
+        dispatch(asyHandleLogout()).then(rs => {
+            if (rs.status === 200) {
+                history.push('/');
+            }
+        })
     }
     return (
         <div className="ass1-head-user">

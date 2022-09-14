@@ -8,7 +8,6 @@ const Profile = () => {
     const [users, setUsers] = useState(null);
     const dispatch = useDispatch()
 
-    const img = useRef();
 
     if (!user) return null;
 

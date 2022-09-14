@@ -1,20 +1,31 @@
 import { ACCESS_TOKEN, ACT_LOGIN_SUCCESS } from "../../constants";
 import { mappingUser, setToken } from "../../helpers";
 import { authorService } from "../../services/author"
+import { reducerGetPostByUser } from "../post/actions";
 
 export function asyLogin(params) {
     return async (dispatch) => {
         try {
             const response = await authorService.login(params);
             const token = response.data.token;
-            dispatch(reducerLogin(response.data.user, token))
-            return {
-                ok: response.data.status,
-                user: response.data.user
+            if (token ===undefined) {
+                return {
+                    ok: response.data.status,
+                    error: response.data.error
+                }
             }
+            else {
+                dispatch(reducerLogin(response.data.user, token))
+                return {
+                    ok: response.data.status,
+                    user: response.data.user
+                }
+                
+            }
+
         } catch (error) {
             return {
-                ok: false,
+                ok: 400,
                 error: "username hoac pass khong dung"
             }
         }
@@ -24,7 +35,7 @@ export function asyLogin(params) {
 export function asyFetchMe() {
     return async dispatch => {
         const token = localStorage.getItem(ACCESS_TOKEN);
-        if (token === '') return null;
+        if (token === '' || token===undefined) return null;
         if (typeof (token) === "undefined") {
             setToken()
             return {}
@@ -66,8 +77,19 @@ export const asyUpdateUser = (formData) => {
     }
 }
 
-export const handleLogout = () => {
-    // dispatch(reducerLogin({},''))
+export const asyHandleLogout = () => {
+    return async dispatch => {
+        try {
+            dispatch(reducerLogin({}, ''));
+            setToken()
+            return {
+                status: 200,
+                message: "ok"
+            }
+        } catch (error) {
+            return error
+        }
+    }
 }
 
 export const asyRegister = (data) => {
@@ -76,6 +98,7 @@ export const asyRegister = (data) => {
             const res = await authorService.register(data)
             const user = mappingUser(res.data.user)
             dispatch(reducerLogin(user, res.data.token))
+            dispatch(reducerGetPostByUser([]))
             return {
                 status: 200,
                 user

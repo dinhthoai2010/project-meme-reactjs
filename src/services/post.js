@@ -18,5 +18,8 @@ export const postService = {
     },
     getPost (id) {
         return api.call().get('/post/post.php?postid='+id)
-    }    
+    },
+    getListByCat(params){
+        return api.call().get('/post/getListByCategory.php', {params})
+    } 
 }
